@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shortlist | Smart Recruitment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+
+  <aside class="sidebar" id="sidebar">
+    <a href="#overview" class="brand">
+      <span class="brand-mark">S</span>
+      <span class="brand-name">Shortlist</span>
+    </a>
+
+    <nav class="nav">
+      <a href="#overview" class="nav-link active" data-section="overview">Overview</a>
+      <a href="#add" class="nav-link" data-section="add">Add candidate</a>
+      <a href="#match" class="nav-link" data-section="match">Find a match</a>
+      <a href="#pool" class="nav-link" data-section="pool">Candidate pool</a>
+      <a href="#about" class="nav-link" data-section="about">How it works</a>
+    </nav>
+
+    <div class="side-note">
+      <p class="side-note-title">Tip</p>
+      <p>Separate skills with commas. Spelling and capital letters don't matter when matching.</p>
+    </div>
+  </aside>
+
+  <main class="content">
+
+    <!-- OVERVIEW -->
+    <section id="overview" class="hero">
+      <p class="eyebrow">Smart recruitment, made simple</p>
+      <h1>Find the right person for the role, <em>faster.</em></h1>
+      <p class="lead">
+        Store your candidates, describe the job, and Shortlist ranks everyone by how well
+        their skills cover what you need. It also tells you what each person is missing.
+      </p>
+      <div class="hero-actions">
+        <a href="#match" class="btn btn-dark">Start matching</a>
+        <a href="#add" class="btn btn-ghost">Add a candidate</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-num" id="candidateCount">0</span>
+          <span class="stat-label">Candidates stored</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" id="topScore">–</span>
+          <span class="stat-label">Best match so far</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" id="avgScore">–</span>
+          <span class="stat-label">Average match</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADD CANDIDATE -->
+    <section id="add" class="panel">
+      <div class="panel-head">
+        <h2>Add a candidate</h2>
+        <p>Fill in what you know. Only name and skills are required.</p>
+      </div>
+
+      <form id="candidateForm" class="form-grid">
+        <label>Full name
+          <input type="text" name="name" placeholder="e.g. Priya Sharma" required>
+        </label>
+        <label>Preferred role
+          <input type="text" name="role" placeholder="e.g. Data Analyst">
+        </label>
+        <label class="wide">Skills
+          <input type="text" name="skills" placeholder="Python, SQL, Excel, Communication" required>
+        </label>
+        <label>Education
+          <input type="text" name="education" placeholder="e.g. B.Sc. Computer Science">
+        </label>
+        <label>Experience (years)
+          <input type="number" name="experience" min="0" step="0.5" placeholder="2">
+        </label>
+
+        <div class="form-foot wide">
+          <button type="submit" class="btn btn-dark">Save candidate</button>
+          <span id="candidateMessage" class="message"></span>
+        </div>
+      </form>
+    </section>
+
+    <!-- FIND MATCH -->
+    <section id="match" class="panel panel-purple">
+      <div class="panel-head">
+        <h2>Find a match</h2>
+        <p>Tell us what the job needs and we'll rank your candidates.</p>
+      </div>
+
+      <form id="recommendationForm" class="form-grid">
+        <label>Job role
+          <input type="text" name="role" placeholder="e.g. Data Analyst">
+        </label>
+        <label class="wide">Required skills
+          <input type="text" name="required_skills" placeholder="Python, SQL, Statistics" required>
+        </label>
+
+        <div class="form-foot wide">
+          <button type="submit" class="btn btn-yellow">Rank candidates</button>
+          <button type="button" class="btn btn-ghost-light" id="resetBtn">Show everyone</button>
+          <span id="recommendationMessage" class="message"></span>
+        </div>
+      </form>
+    </section>
+
+    <!-- POOL / RESULTS -->
+    <section id="pool" class="pool">
+      <div class="pool-head">
+        <div>
+          <h2 id="poolTitle">Candidate pool</h2>
+          <p class="muted" id="resultCount">0 results</p>
+        </div>
+        <input type="search" id="searchBox" class="search" placeholder="Search by name, skill or role">
+      </div>
+
+      <div id="results" class="grid"></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="panel panel-plain">
+      <div class="panel-head">
+        <h2>How the ranking works</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <span class="step-no">1</span>
+          <h3>You list the required skills</h3>
+          <p>Each skill is cleaned up and compared in lowercase, so "python" and "Python" count as the same.</p>
+        </div>
+        <div class="step">
+          <span class="step-no">2</span>
+          <h3>We check every candidate</h3>
+          <p>Matching skills are counted against the full list of requirements to get a coverage percentage.</p>
+        </div>
+        <div class="step">
+          <span class="step-no">3</span>
+          <h3>You get a ranked shortlist</h3>
+          <p>The highest coverage comes first. A matching preferred role breaks ties between equal scores.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Shortlist &middot; AI project &middot; Built with HTML, CSS, JavaScript and Flask</p>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="/script.js"></script>
+</body>
+            </html>
